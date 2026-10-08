@@ -21,5 +21,17 @@ export function criarRotasSenhas(servico: ServicoSenhas): Router {
     res.status(200).json(paraApi(senha));
   });
 
+  rotas.post("/senhas/:codigo/concluir", (req, res) => {
+    res.status(200).json(paraApi(servico.concluir(req.params.codigo)));
+  });
+
+  rotas.post("/senhas/:codigo/rechamar", (req, res) => {
+    res.status(200).json(paraApi(servico.rechamar(req.params.codigo)));
+  });
+
+  rotas.post("/senhas/:codigo/cancelar", (req, res) => {
+    res.status(200).json(paraApi(servico.cancelar(req.params.codigo)));
+  });
+
   return rotas;
 }

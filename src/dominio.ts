@@ -10,6 +10,7 @@ export interface Senha {
   emissao: string;
   status: StatusSenha;
   chamada_em: string | null;
+  ordem_chamada: number | null;
 }
 
 export interface SenhaApi {

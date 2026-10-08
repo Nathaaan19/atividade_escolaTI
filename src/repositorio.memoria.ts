@@ -6,6 +6,7 @@ export class RepositorioMemoria implements RepositorioSenhas {
   private sequencias = new Map<string, number>();
   private ultimoId = 0;
   private preferenciaisSeguidas = 0;
+  private ultimaOrdemChamada = 0;
 
   executarAtomico<T>(fn: () => T): T {
     return fn();
@@ -37,6 +38,21 @@ export class RepositorioMemoria implements RepositorioSenhas {
       throw new Error(`Senha id=${senha.id} nao existe no repositorio`);
     }
     this.senhas[indice] = { ...senha };
+  }
+
+  buscarPorCodigo(codigo: string): Senha | undefined {
+    for (let i = this.senhas.length - 1; i >= 0; i--) {
+      const senha = this.senhas[i];
+      if (senha.codigo === codigo) {
+        return { ...senha };
+      }
+    }
+    return undefined;
+  }
+
+  proximaOrdemChamada(): number {
+    this.ultimaOrdemChamada += 1;
+    return this.ultimaOrdemChamada;
   }
 
   lerPreferenciaisSeguidas(): number {

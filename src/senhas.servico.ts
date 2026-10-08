@@ -24,6 +24,7 @@ export class ServicoSenhas {
         emissao: formatarIso(agora),
         status: "aguardando",
         chamada_em: null,
+        ordem_chamada: null,
       });
     });
   }
@@ -51,9 +52,58 @@ export class ServicoSenhas {
         ...escolhida,
         status: "chamada",
         chamada_em: formatarIso(this.relogio()),
+        ordem_chamada: this.repo.proximaOrdemChamada(),
       };
       this.repo.atualizar(chamada);
       return chamada;
     });
+  }
+
+  concluir(codigo: string): Senha {
+    return this.repo.executarAtomico(() => {
+      const senha = this.buscarOuFalhar(codigo);
+      if (senha.status !== "chamada") {
+        throw new ErroApi(409, "senha_nao_chamada");
+      }
+      const concluida: Senha = { ...senha, status: "concluida" };
+      this.repo.atualizar(concluida);
+      return concluida;
+    });
+  }
+
+  rechamar(codigo: string): Senha {
+    return this.repo.executarAtomico(() => {
+      const senha = this.buscarOuFalhar(codigo);
+      if (senha.status !== "chamada") {
+        throw new ErroApi(409, "senha_nao_chamada");
+      }
+      const rechamada: Senha = {
+        ...senha,
+        chamada_em: formatarIso(this.relogio()),
+        ordem_chamada: this.repo.proximaOrdemChamada(),
+      };
+      this.repo.atualizar(rechamada);
+      return rechamada;
+    });
+  }
+
+  cancelar(codigo: string): Senha {
+    return this.repo.executarAtomico(() => {
+      const senha = this.buscarOuFalhar(codigo);
+      if (senha.status !== "aguardando") {
+        throw new ErroApi(409, "senha_nao_aguardando");
+      }
+      const cancelada: Senha = { ...senha, status: "cancelada" };
+      this.repo.atualizar(cancelada);
+      return cancelada;
+    });
+  }
+
+  private buscarOuFalhar(codigo: string): Senha {
+    const senha = this.repo.buscarPorCodigo(codigo);
+    if (!senha) {
+      throw new ErroApi(404, "senha_nao_encontrada");
+    }
+    return senha;
   }
 }

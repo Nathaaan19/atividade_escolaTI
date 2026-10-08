@@ -13,6 +13,10 @@ export interface RepositorioSenhas {
 
   atualizar(senha: Senha): void;
 
+  buscarPorCodigo(codigo: string): Senha | undefined;
+
+  proximaOrdemChamada(): number;
+
   lerPreferenciaisSeguidas(): number;
   gravarPreferenciaisSeguidas(valor: number): void;
 }
