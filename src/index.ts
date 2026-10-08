@@ -1,6 +1,5 @@
 import { createApp } from "./app";
-
-const PORTA = 8080;
+import { PORTA } from "./config";
 
 const app = createApp();
 
