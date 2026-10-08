@@ -2,9 +2,9 @@
 
 # ALUNO
 
-Nome: Nathan
+Nome: Nathan Rodrigues Pulchinelli
 
-RA: >>> PREENCHER <<<
+RA: 23025003-2
 
 Conta GitHub: @Nathaaan19
 
