@@ -1,3 +1,12 @@
+
+# ---- App (fila de atendimento) ----
+# banco SQLite local (inclui arquivos auxiliares do modo WAL)
+*.db
+*.db-wal
+*.db-shm
+*.log
+coverage/
+
 # ---- SO / editores ----
 .DS_Store
 *.icloud

@@ -1,0 +1,47 @@
+{
+  "name": "atividade_escolati",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API de fila de atendimento (Track 03)",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nathaaan19/atividade_escolaTI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Nathaaan19/atividade_escolaTI/issues"
+  },
+  "homepage": "https://github.com/Nathaaan19/atividade_escolaTI#readme",
+  "dependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^20.19.43",
+    "@types/supertest": "^7.2.1",
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.6",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "express": "^5.2.1",
+    "prettier": "^3.9.9",
+    "supertest": "^7.3.1",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.1",
+    "vitest": "^4.1.11",
+    "zod": "^4.6.5"
+  }
+}
