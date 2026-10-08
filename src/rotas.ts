@@ -16,5 +16,10 @@ export function criarRotasSenhas(servico: ServicoSenhas): Router {
     res.status(201).json(paraApi(senha));
   });
 
+  rotas.get("/senhas/proxima", (_req, res) => {
+    const senha = servico.chamarProxima();
+    res.status(200).json(paraApi(senha));
+  });
+
   return rotas;
 }
