@@ -33,5 +33,9 @@ export function criarRotasSenhas(servico: ServicoSenhas): Router {
     res.status(200).json(paraApi(servico.cancelar(req.params.codigo)));
   });
 
+  rotas.get("/painel", (_req, res) => {
+    res.status(200).json({ chamadas: servico.painel().map((s) => paraApi(s)) });
+  });
+
   return rotas;
 }

@@ -1,4 +1,4 @@
-import { PREFIXO, RAZAO_PREFERENCIAL } from "./config";
+import { PREFIXO, RAZAO_PREFERENCIAL, TAMANHO_PAINEL } from "./config";
 import type { Senha, TipoSenha } from "./dominio";
 import { ErroApi } from "./erros";
 import type { RepositorioSenhas } from "./repositorio";
@@ -97,6 +97,10 @@ export class ServicoSenhas {
       this.repo.atualizar(cancelada);
       return cancelada;
     });
+  }
+
+  painel(): Senha[] {
+    return this.repo.ultimasChamadas(TAMANHO_PAINEL);
   }
 
   private buscarOuFalhar(codigo: string): Senha {

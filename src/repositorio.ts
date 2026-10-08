@@ -19,4 +19,5 @@ export interface RepositorioSenhas {
 
   lerPreferenciaisSeguidas(): number;
   gravarPreferenciaisSeguidas(valor: number): void;
+  ultimasChamadas(limite: number): Senha[];
 }

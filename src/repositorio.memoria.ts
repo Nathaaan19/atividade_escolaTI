@@ -62,4 +62,12 @@ export class RepositorioMemoria implements RepositorioSenhas {
   gravarPreferenciaisSeguidas(valor: number): void {
     this.preferenciaisSeguidas = valor;
   }
+
+  ultimasChamadas(limite: number): Senha[] {
+    return this.senhas
+      .filter((s) => s.ordem_chamada !== null)
+      .sort((a, b) => (b.ordem_chamada ?? 0) - (a.ordem_chamada ?? 0))
+      .slice(0, limite)
+      .map((s) => ({ ...s }));
+  }
 }
